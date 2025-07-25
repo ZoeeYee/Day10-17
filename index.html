@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>學習工具整合</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="tool-container">
+<!-- DAY10 - 運算子與條件判斷 -->
+     <div class="tool-box">
+         <h1>成績判定小工具</h1>
+         <!-- 使用者輸入成績 -->
+         <input type="number" id="scoreInput" placeholder="請輸入分數" />
+          <!-- 成績觸發 -->
+          <button id="checkBtn">顯示結果</button>
+          <!-- 顯示結果 -->
+          <p id="resultText">請輸入分數後點擊按鈕</p>
+      </div>
+<!-- DAY11 - 迴圈與陣列 -->
+      <div class="tool-box">
+        <h1>購物清單顯示器</h1>
+        <button id="showListBtn">顯示購物清單</button>
+        <!-- 用來顯示清單 -->
+        <ul id="shoppingList"></ul>
+      </div>
+<!-- DAY12 - 函式與參數 -->
+      <div class="tool-box">
+          <h1>BMI計算小工具</h1>
+          <input type="number" id="heightInput" placeholder="請輸入身高(cm)" />
+          <input type="number" id="weightInput" placeholder="請輸入體重(kg)" />
+          <button id="calcBtn">計算BMI</button>
+          <p id="bmiResult">請輸入資料並按下按鈕</p>
+      </div>
+<!-- DAY13 - 物件與屬性 -->
+      <div class="tool-box">
+        <h1>人物資料</h1>
+        <button onclick="showBtn()">顯示人物資訊</button>
+        <p id="info">這裡會顯示人物資訊</p>
+      </div>
+<!-- DAY14 - DOM操作 -->
+      <div class="tool-box">
+        <h1>興趣新增工具</h1>
+        <input type="text" id="hobbyInput" placeholder="輸入一個新興趣" />
+        <button id="addHobbyBtn">新增興趣</button>
+        <ul id="hobbyList">
+          <!-- 這裡會動態顯示興趣項目 -->
+        </ul>
+      </div>
+<!-- DAY15 - 事件監聽與互動 -->
+      <div class="tool-box">
+        <h1>興趣清單小工具</h1>
+        <input type="text" id="interestInput" placeholder="輸入你的興趣" />
+        <button id="addInterestBtn">新增興趣</button>
+        <ul id="interestList"></ul>
+      </div>
+<!-- DAY16 - 表單驗證與錯誤提示 -->
+      <div class="tool-box">
+        <h1>註冊表單</h1>
+        <form id="registerForm">
+          <input type="text" id="nameInput" placeholder="請輸入姓名" required />
+          <p class="error-text" id="nameError"></p>
+
+          <input type="email" id="emailInput" placeholder="請輸入Email" required />
+          <p class="error-text" id="emailError"></p>
+
+          <input type="password" id="passwordInput" placeholder="請輸入密碼(至少6碼)" required minlength="6" />
+          <p class="error-text" id="passwordError"></p>
+
+          <button type="submit">送出</button>
+          <p id="formSuccess" style="color:green;"></p>
+        </form>
+      </div>
+<!-- DAY17 - JSON與物件轉換 -->
+      <div class="tool-box">
+        <h1>JSON資料組合練習</h1>
+        <input type="text" id="jsonName" placeholder="請輸入姓名" />
+        <input type="number" id="jsonAge" placeholder="請輸入年齡" />
+
+        <button id="jsonBtn">組合JSON資料</button>
+        <button id="saveBtn">儲存到localStroage</button>
+        <button id="sendBtn">模擬送到後端</button>
+        <pre id="jsonOutput">請輸入資料並點擊按鈕</pre>
+        
+        <div class="json-actions">
+          <button id="clearJsonBtn">清除資料</button>
+          <button id="copyJsonBtn">複製JSON</button>
+        </div>
+      </div>
+<!-- DAY18 - 瀏覽器API:LocalStorage -->
+      <div class="tool-box" id="todoTool">
+        <h1>ToDo代辦清單</h1>
+        <input type="text" id="todoInput" placeholder="輸入代辦事項" />
+        <button id="addTodoBtn">新增任務</button>
+        <ul id="todoList"></ul>
+      </div>
+ <!-- DAY19 - 非同步概念：Callback,Promise,Asyn/Await -->
+      <div class="tool-box">
+        <h1>非同步練習 - Callback與Promise</h1>
+        <button id="callbackBtn">開始模擬載入Callback</button>
+        <button id="promiseBtn">開始模擬載入Promise</button>
+        <button id="asynBtn">開始模擬載入Asyn/Await</button>
+        <p id="day19Result">請選擇一種方式取得資料</p>
+      </div>
+<!-- DAY20 - Fetch API資料取得 -->
+      <div class="tool-box">
+        <h1>使用Fetch取得API資料</h1>
+        <button id="fetchBtn">取得使用者資料</button>
+        <div id="apiOutput"></div>
+<!-- ------------------------------------------------------------- -->
+    </div>
+  <script src="script.js"></script>
+  </body>
+</html>
