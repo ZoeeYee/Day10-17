@@ -513,43 +513,110 @@ asynBtn.addEventListener("click",()=>
 //DAY20 - Fetch API資料取得
 
 //取得按紐與顯示區塊DOM
-const fetchBtn=document.getElementById("fetchBtn");
-const apiOutput=document.getElementById("apiOutput");
+const fetchBtn=document.getElementById("fetchBtn");//取得按鈕
+const apiOutput=document.getElementById("apiOutput");//顯示資料的區域
 
-//當按鈕被點擊時，發送請求到API
-fetchBtn.addEventListener("click",()=>
+//async函式處理fetch流程
+async function fetchUserData()
 {
-  //顯示loading訊息
-  apiOutput.textContent="載入中...";
-  
-  //使用Fetch取得資料(這裡用隨機使用者API)
-  fetch("https://randomuser.me/api/")
-    .then(response=>
-    {
-      //檢查回傳是否成功
-      if(!response.ok)
-      {
-        throw new Error("網路錯誤，無法取得資料");
-      }
-      return response.json();//將回應轉成JSON
-    })
-    .then(data=>
-    {
-      //取得使用者資訊
-      const user=data.results[0];
-      const name=`${user.name.title} ${user.name.first} ${user.name.last}`;
-      const email=user.email;
-      const country=user.location.country;
+  try
+  {
+    //顯示載入中訊息
+    apiOutput.textContent="載入中...";
     
-      //顯示資料
-      apiOutput.innerHTML=
-        `<p>姓名：${name}</p>
-         <p>Email：${email}</p>
-         <p>國家：${country}</p>`;
-    })
-    .catch(error=>
+    //等待fetch回傳資料
+    const response=await fetch("https://randomuser.me/api/");
+    
+    //檢查回應狀態
+    if(!response.ok)
     {
-      //處理錯誤狀況
-      apiOutput.textContent="錯誤："+error.message;
-    });
-});
+      throw new Error("網路錯誤，無法取得資料");
+    }
+    
+    //等待JSON解析完成
+    const data=await response.json();
+    
+    //解析使用者資料
+    const user=data.results[0];
+    const name=`${user.name.title} ${user.name.first} ${user.name.last}`;
+    const email=user.email;
+    const country=user.location.country;
+    
+    //將資料顯示在畫面上
+    apiOutput.innerHTML=
+      `<p>姓名：${name}</p>
+       <p>Email：${email}</p>
+       <p>國家：${country}</p>`;
+  }
+  catch(error)
+  {
+    //錯誤處理
+    apiOutput.textContent="錯誤："+error.message;
+  }
+}
+
+//綁定點擊事件
+fetchBtn.addEventListener("click",fetchUserData);
+
+//----------------------------------------
+// //當按鈕被點擊時，發送請求到API(Promise)
+// fetchBtn.addEventListener("click",()=>
+// {
+//   //顯示loading訊息
+//   apiOutput.textContent="載入中...";
+  
+//   //使用Fetch取得資料(這裡用隨機使用者API)
+//   fetch("https://randomuser.me/api/")
+//     .then(response=>
+//     {
+//       //檢查回傳是否成功
+//       if(!response.ok)
+//       {
+//         throw new Error("網路錯誤，無法取得資料");
+//       }
+//       return response.json();//將回應轉成JSON
+//     })
+//     .then(data=>
+//     {
+//       //取得使用者資訊
+//       const user=data.results[0];
+//       const name=`${user.name.title} ${user.name.first} ${user.name.last}`;
+//       const email=user.email;
+//       const country=user.location.country;
+    
+//       //顯示資料
+//       apiOutput.innerHTML=
+//         `<p>姓名：${name}</p>
+//          <p>Email：${email}</p>
+//          <p>國家：${country}</p>`;
+//     })
+//     .catch(error=>
+//     {
+//       //處理錯誤狀況
+//       apiOutput.textContent="錯誤："+error.message;
+//     });
+// });
+//----------------------------------------
+//--------------------------------------------------------------------
+//DAY21 - ES6語法進階(let/const、箭頭函式、模板字串)
+function runES6Demo()
+{
+  //練習：let與const
+  let score=90;
+  const student={name:"Zoe",age:22};
+  
+  //練習：箭頭函式
+  const double=(num)=>num*2;
+  const greet=()=>`Hello,${student.name}!`;
+  
+  //練習：模板字串
+  const html=
+        `<p>姓名：${student.name}</p>
+         <p>年齡：${student.age}</p>
+         <p>分數*2：${double(score)}</p>
+         <p>問候語：${greet()}</p>`;
+  
+  //將結果顯示在畫面上
+  document.querySelector(".es6-output").innerHTML=html;
+  console.log(html);
+}
